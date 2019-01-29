@@ -20,43 +20,34 @@ namespace Sorting
                 data[i] = int.Parse(strArray[i]);
             }
 
-            // Print unsorted data.
-            Console.Write("\nUnsorted: ");
+            // Print data.
+            Console.Write("\nArray to search: ");
             foreach (var i in data)
             {
                 Console.Write($"{i} ");
             }
 
-            // Sort data.
-            SelectionSort(data);
+            // Query number to search:
+            Console.WriteLine("\nEnter number to find:");
+            string input = Console.ReadLine().Trim();
+            int val;
+            int.TryParse(input, out val);
 
-            // Print sorted data.
-            Console.Write("\nSorted: ");
-            foreach (var i in data)
-            {
-                Console.Write($"{i} ");
-            }
+            // Print index value is found at or -1.
+            Console.WriteLine(SequentialSearch(data, val));
+
         }
 
-        public static void SelectionSort(int[] arr)
+        public static int SequentialSearch(int[] arr, int targetValue)
         {
             for (int i = 0; i < arr.Length; i++)
             {
-                int lowest = i;
-                for (int j = i + 1; j < arr.Length; j++)
+                if (arr[i] == targetValue)
                 {
-                    if (arr[j] < arr[lowest])
-                    {
-                        lowest = j;
-                    }
-                }
-                if (i != lowest)
-                {
-                    int temp = arr[lowest];
-                    arr[lowest] = arr[i];
-                    arr[i] = temp;
+                    return i;
                 }
             }
+            return -1;
         }
     }
 }
